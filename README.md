@@ -27,3 +27,12 @@ Here is the code for dialog with two options:
         dialog.setLogo(getResources().getDrawable(R.mipmap.ic_launcher_round));
         dialog.show();
 ```
+
+You can also change the icon, color of title, message or button background or button text.
+```
+      dialog.setTitleColor(getResources().getColor(R.color.blue));
+      dialog.setPositiveButtonColor(getResources().getColor(R.color.blue));
+      dialog.setNegativeButtonColor(getResources().getColor(R.color.red));
+      dialog.setPositiveButtonTextColor(getResources().getColor(R.color.white));
+      dialog.show()
+```
