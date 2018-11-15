@@ -2,6 +2,8 @@
 
 A beautiful custom dialog for android apps.
 
+![alt text](http://url/to/img.png)
+
 ### How to use?
 
 Download the project and import it as module in the project. 
