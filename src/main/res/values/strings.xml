@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Shrestha Dialog</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading...</string>
+</resources>
