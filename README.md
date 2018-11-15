@@ -2,7 +2,7 @@
 
 A beautiful custom dialog for android apps.
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/rohnsht/LegendDialog/blob/master/Screenshot_1542263511.png)
 
 ### How to use?
 
