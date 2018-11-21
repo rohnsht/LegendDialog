@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/title"
-            android:textColor="@color/blue"
+            android:textColor="?attr/colorPrimary"
             android:textSize="@dimen/text_size_large" />
 
         <TextView
@@ -52,9 +52,10 @@
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_logo"
+        android:id="@+id/iv_icon"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

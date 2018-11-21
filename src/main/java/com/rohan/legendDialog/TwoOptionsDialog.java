@@ -19,7 +19,7 @@ public class TwoOptionsDialog {
 
     private AlertDialog dialog;
 
-    private CircleImageView iv_logo;
+    private CircleImageView iv_icon;
     private TextView tv_title, tv_message;
     private Button btn_positive, btn_negative;
 
@@ -31,10 +31,10 @@ public class TwoOptionsDialog {
         mCtx = context;
         drawableUtil = new DrawableUtil(context);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.LegendDialog);
 
         View view = LayoutInflater.from(context).inflate(R.layout.two_options_dialog, null);
-        iv_logo = view.findViewById(R.id.iv_logo);
+        iv_icon = view.findViewById(R.id.iv_icon);
         tv_title = view.findViewById(R.id.tv_title);
         tv_message = view.findViewById(R.id.tv_message);
         btn_positive = view.findViewById(R.id.btn_positive);
@@ -42,9 +42,8 @@ public class TwoOptionsDialog {
 
         builder.setView(view);
         builder.setCancelable(false);
-        dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
+        // Set values into widgets
         tv_title.setText(header);
         tv_message.setText(message);
         btn_positive.setText(okStr);
@@ -64,16 +63,18 @@ public class TwoOptionsDialog {
             }
         });
 
+        // Change buttons background color to primary and accent color
         TypedValue typedValue = new TypedValue();
-
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         setPositiveButtonColor(typedValue.data);
         context.getTheme().resolveAttribute(R.attr.colorAccent, typedValue, true);
         setNegativeButtonColor(typedValue.data);
+
+        dialog = builder.create();
     }
 
-    public void setLogo(Drawable logo) {
-        iv_logo.setImageDrawable(logo);
+    public void setLogo(int resId) {
+        iv_icon.setImageResource(resId);
     }
 
     public void setTitleColor(int color) {
@@ -120,10 +121,6 @@ public class TwoOptionsDialog {
 
     public void setMessage(String message) {
         tv_message.setText(message);
-    }
-
-    public void setButtonText(String btnText) {
-        btn_positive.setText(btnText);
     }
 
     public void show() {

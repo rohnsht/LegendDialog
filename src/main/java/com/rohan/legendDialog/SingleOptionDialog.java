@@ -17,7 +17,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SingleOptionDialog {
 
-    private CircleImageView iv_logo;
+    private CircleImageView iv_icon;
     private TextView tv_title, tv_message;
     private Button btn_positive;
 
@@ -28,19 +28,18 @@ public class SingleOptionDialog {
                               final View.OnClickListener mlistener) {
         drawableUtil = new DrawableUtil(context);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.LegendDialog);
 
         View view = LayoutInflater.from(context).inflate(R.layout.single_option_dialog, null);
-        iv_logo = view.findViewById(R.id.iv_logo);
+        iv_icon = view.findViewById(R.id.iv_icon);
         tv_title = view.findViewById(R.id.tv_title);
         tv_message = view.findViewById(R.id.tv_message);
         btn_positive = view.findViewById(R.id.btn_positive);
 
         builder.setView(view);
         builder.setCancelable(false);
-        dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
+        // Set values into widgets
         tv_title.setText(header);
         tv_message.setText(message);
         btn_positive.setText(okStr);
@@ -52,14 +51,16 @@ public class SingleOptionDialog {
             }
         });
 
+        // Change button background color
         TypedValue typedValue = new TypedValue();
-
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         setButtonColor(typedValue.data);
+
+        dialog = builder.create();
     }
 
     public void setLogo(Drawable logo) {
-        iv_logo.setImageDrawable(logo);
+        iv_icon.setImageDrawable(logo);
     }
 
     public void setTitleColor(int color) {

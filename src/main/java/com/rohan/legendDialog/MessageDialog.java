@@ -8,35 +8,41 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rohan.legendDialog.utils.ColorUtil;
 import com.rohan.legendDialog.utils.DrawableUtil;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MessageDialog {
 
-    private ImageView iv_logo;
+    private CircleImageView iv_icon;
     private TextView tv_title, tv_message;
     private Button btn_positive;
 
+    private Context context;
     private AlertDialog dialog;
     private DrawableUtil drawableUtil;
 
     public MessageDialog(Context context, String header, String message, String okStr) {
+        this.context = context;
         drawableUtil = new DrawableUtil(context);
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        dialog = createDialog(header, message, okStr);
+    }
+
+    private AlertDialog createDialog(String header, String message, String okStr) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.LegendDialog);
 
         View view = LayoutInflater.from(context).inflate(R.layout.single_option_dialog, null);
-        iv_logo = view.findViewById(R.id.iv_logo);
+        iv_icon = view.findViewById(R.id.iv_icon);
         tv_title = view.findViewById(R.id.tv_title);
         tv_message = view.findViewById(R.id.tv_message);
         btn_positive = view.findViewById(R.id.btn_positive);
 
         builder.setView(view);
         builder.setCancelable(false);
-        dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         tv_title.setText(header);
         tv_message.setText(message);
@@ -49,13 +55,15 @@ public class MessageDialog {
         });
 
         TypedValue typedValue = new TypedValue();
-
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         setButtonColor(typedValue.data);
+
+        dialog = builder.create();
+        return dialog;
     }
 
-    public void setLogo(Drawable logo) {
-        iv_logo.setImageDrawable(logo);
+    public void setLogo(int resId) {
+        iv_icon.setImageResource(resId);
     }
 
     public void setTitleColor(int color) {
